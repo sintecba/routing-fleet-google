@@ -3,6 +3,6 @@ services:
     build: .
     env_file: .env
     volumes:
-      - "./key.json:/usr/src/app/key.json"
+      - "./credentials/key.json:/usr/src/app/key.json"
     ports:
       - 8080:8080
