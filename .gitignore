@@ -21,3 +21,9 @@ terraform.tfstate*
 
 .DS_Store
 application/frontend/src/config/*
+
+# Sintec Development
+**/deployment
+**/docs
+**/escenarios
+**/application
