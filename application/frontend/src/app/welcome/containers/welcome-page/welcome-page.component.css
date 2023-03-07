@@ -3,23 +3,71 @@
   text-align: center;
 }
 
+#page-title {
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+  max-width: 750px;
+}
+
+span {
+  margin-top: 15px;
+}
+
+p {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
 .page-content {
-  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.mat-title {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.intro {
+  max-width: 600px;
+}
+
+.entry-points {
+  justify-content: center;
+  align-items: center;
+}
+
+.d-flex {
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+/* este sirve por si ya existe una
+solucion previamente cargada en el
+servidor */
+.cloud-invisible {
+  visibility: hidden;
+}
+
+/*
+
+.entry-points button {
+  margin: 16px 8px 0;
+  flex-shrink: 0;
+}
+
 svg {
   max-height: 500px;
-}
-
-section .mat-title {
-  display: inline-block;
-  margin: 0;
-}
-
-section {
-  margin-bottom: 28px;
 }
 
 section:last-child {
@@ -47,14 +95,12 @@ section:last-child {
   text-align: center;
 }
 
+
 .info-panel__content > :last-child {
   margin-bottom: 0 !important;
 }
 
-.entry-points {
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+
 
 .entry-points > .col {
   display: flex;
@@ -65,9 +111,7 @@ section:last-child {
   flex-shrink: 0;
 }
 
-.cloud-invisible {
-  visibility: hidden;
-}
+
 
 .cloud-visible {
   visibility: visible;
@@ -93,9 +137,4 @@ section:last-child {
   }
 }
 
-#page-title {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
+*/

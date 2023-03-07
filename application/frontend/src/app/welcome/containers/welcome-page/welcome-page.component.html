@@ -1,57 +1,54 @@
 <app-logo></app-logo>
-<section id="page-title" class="page-content mb-0">
-  <img src="../../../../assets/images/cloud_fleet_routing_logo.svg" width="50px" />
-  <span class="mat-title ml-3">Cloud Fleet Routing API</span>
+
+<section id="page-title" class="page-content">
+  <img src="../../../../assets/images/sintec/Logo.jpg"
+       width="700px"
+       height="125px"/>
 </section>
+
 <section class="intro page-content">
+  <span class="mat-title"> Bienvenid@ a la plataforma de Optimización de Rutas</span>
   <p>
-    Cloud Fleet Routing solves your vehicle routing problems rapidly and at massive scale. It
-    supports capacities, costs, time windows, breaks, delays, traffic, heterogeneous fleets, and
-    different modalities (driving, bicycling, or walking). More information is available in the
-    <a (click)="onHelp()"> app help docs </a> or on our
-    <a href="https://cloud.google.com/optimization/docs">documentation site</a>.
+    Este modelo permite resolver una gran variedad de problemas que demanden
+    de la cuidadosa optimizacion de las rutas vehiculares empleadas en cualquier
+    operacion a gran escala; de manera ágil y rápida.
   </p>
   <p>
-    For questions, reach out at
-    <a href="mailto:cloud-fleet-routing-support@google.com"
-      >cloud-fleet-routing-support@google.com</a
-    >. Try advanced features.
+    Para conocer más sobre la gran variedad de soluciones que aporta este modelo,
+    por favor, no dudar en contactar al <a (click)="onHelp()">centro de
+    ayuda Sintec</a>.
   </p>
   <p>
-    By using this demo app you agree to the terms and conditions of the following license:
-    <a href="https://cloud.google.com/maps-platform/terms" target="_blank">Google Maps Platform</a>
-  </p>
+    Con gusto, cualquiera de nuestr@s analistas podran orientar
+    mejor el enfoque de la <b>solucion Sintec a la medida</b>.
 </section>
-<section class="entry-points d-flex page-content">
+
+<section class="entry-points page-content">
   <div class="d-flex">
-    <div class="col">
-      <button type="button" mat-flat-button color="primary" (click)="upload()">
-        Upload existing scenario or solution
-      </button>
-    </div>
-    <div class="col">
-      <button type="button" mat-stroked-button color="primary" (click)="newScenario()">
-        Build a new scenario
-      </button>
-    </div>
+    <button type="button" mat-flat-button color="primary" (click)="upload()">
+      Cargar desde un archivo JSON
+    </button>
   </div>
   <div class="d-flex">
-    <div class="col">
-      <button type="button" mat-flat-button color="primary" (click)="loadFromCsv()">
-        Upload from CSV
-      </button>
-    </div>
-    <div
-      class="col cloud-invisible"
-      [ngClass]="{ 'cloud-visible': (hasStorageApi$ | async) && (allowUserStorage$ | async) }">
-      <button type="button" mat-flat-button color="primary" (click)="loadFromStorage()">
-        Open saved scenario or solution
-      </button>
-    </div>
+    <button type="button" mat-flat-button color="primary" (click)="loadFromCsv()">
+      Cargar desde un archivo CSV
+    </button>
+  </div>
+  <div class="d-flex">
+    <button type="button" mat-flat-button color="primary" (click)="newScenario()">
+      Contruir escenario o solucion
+    </button>
+  </div>
+  <div class="d-flex cloud-invisible"
+       [ngClass]="{ 'cloud-visible': (hasStorageApi$ | async) && (allowUserStorage$ | async) }">
+    <button type="button" mat-flat-button color="primary" (click)="loadFromStorage()">
+      Abrir escenario o solucion
+    </button>
   </div>
 </section>
-<section>
-  <svg viewBox="0 0 811 471">
-    <image href="../../../../assets/images/welcome_image.svg" width="811" height="471"></image>
-  </svg>
+
+<section class="page-content">
+    <img src="../../../../assets/images/sintec/mapa_ruta.png"
+         width="500px"
+         height="250px">
 </section>

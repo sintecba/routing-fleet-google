@@ -136,20 +136,6 @@ if (process.env.FRONTEND_PROXY) {
   app.use(express.static("public"));
 }
 
-///////////////////////////////////////////////////////////////////////////////
-///// ----- INTEGRATION ----- /////
-///////////////////////////////////////////////////////////////////////////////
-app.get('/home', (req, res) => {
-  const {token} = req.cookies;
-  const response = utils.verify_token(token, JWT_SECRET);
-  if (response) {
-      return res.render('/home');
-  } else {
-      return res.redirect('http:login');
-  }
-  res.render('signin');
-});
-///////////////////////////////////////////////////////////////////////////////
 
 // other routes
 app.use("/api", apiRoutes);
