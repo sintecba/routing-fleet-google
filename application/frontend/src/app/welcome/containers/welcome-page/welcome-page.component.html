@@ -25,14 +25,16 @@
 </section>
 
 <section class="entry-points page-content">
+  <!--
   <div class="d-flex">
     <button type="button" mat-flat-button color="primary" (click)="upload()">
       Cargar desde un archivo JSON
     </button>
   </div>
+  -->
   <div class="d-flex">
     <button type="button" mat-flat-button color="primary" (click)="loadFromCsv()">
-      Cargar desde un archivo CSV
+      Cargar escenario o solucion desde un archivo CSV
     </button>
   </div>
   <div class="d-flex">
@@ -40,12 +42,14 @@
       Contruir escenario o solucion
     </button>
   </div>
+  <!--
   <div class="d-flex cloud-invisible"
        [ngClass]="{ 'cloud-visible': (hasStorageApi$ | async) && (allowUserStorage$ | async) }">
     <button type="button" mat-flat-button color="primary" (click)="loadFromStorage()">
       Abrir escenario o solucion
     </button>
   </div>
+  -->
 </section>
 
 <section class="page-content">
