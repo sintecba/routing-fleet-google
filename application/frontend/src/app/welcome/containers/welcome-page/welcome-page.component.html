@@ -25,13 +25,17 @@
 </section>
 
 <section class="entry-points page-content">
+  <div class="d-flex">
+    <button type="button" mat-flat-button color="primary" (click)="loadFromXLSX()">
+      Cargar desde un archivo XLSX
+    </button>
+  </div>
   <!--
   <div class="d-flex">
     <button type="button" mat-flat-button color="primary" (click)="upload()">
       Cargar desde un archivo JSON
     </button>
   </div>
-  -->
   <div class="d-flex">
     <button type="button" mat-flat-button color="primary" (click)="loadFromCsv()">
       Cargar escenario o solucion desde un archivo CSV
@@ -42,7 +46,6 @@
       Contruir escenario o solucion
     </button>
   </div>
-  <!--
   <div class="d-flex cloud-invisible"
        [ngClass]="{ 'cloud-visible': (hasStorageApi$ | async) && (allowUserStorage$ | async) }">
     <button type="button" mat-flat-button color="primary" (click)="loadFromStorage()">

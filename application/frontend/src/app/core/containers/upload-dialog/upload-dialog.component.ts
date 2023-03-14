@@ -22,6 +22,11 @@ import * as fromConfig from '../../selectors/config.selectors';
 import { DispatcherService, FileService, PlacesService, UploadService } from '../../services';
 import { toDispatcherLatLng } from 'src/app/util';
 
+///////////////////////////////////////////////////////////////////////////////
+import * as xlsx from 'xlsx';
+import * as _ from 'lodash';
+///////////////////////////////////////////////////////////////////////////////
+
 @Component({
   selector: 'app-upload-dialog',
   templateUrl: './upload-dialog.component.html',
@@ -85,7 +90,6 @@ export class UploadDialogComponent {
     if (!this.fileInput) {
       return;
     }
-
     this.fileInput.nativeElement.click();
     this.fileName.markAsTouched();
   }
@@ -100,49 +104,122 @@ export class UploadDialogComponent {
     if (!file) {
       return;
     }
-
     this.validatingUpload = true;
-
-    // First check if the file is valid JSON
-    let json: any = null;
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    // PERFORM TRANSLATION FROM XLSX TO JSON
+    // Read file input
+    function readFile(file: File): Promise<xlsx.WorkBook> {
+      return new Promise<xlsx.WorkBook>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          const buffer = e.target?.result as ArrayBuffer;
+          const workbook = xlsx.read(buffer, { type: 'array' });
+          resolve(workbook);
+        };
+        reader.onerror = (e) => {
+          reject(e);
+        };
+        reader.readAsArrayBuffer(file);
+      });
+    }
     this.fileInvalid = false;
     try {
-      const text = await this.fileService.readAsText(file);
-      json = JSON.parse(text);
+      const workbook    = await readFile(file);
+      const ubicaciones = workbook.Sheets['Ubicaciones'];
+      const shipments   = workbook.Sheets['Shipments'];
+      const tw          = workbook.Sheets['TimeWindows'];
+      const unidades    = workbook.Sheets['Unidades'];
+      const modelo      = workbook.Sheets['Modelo'];
+      const shipmentsColumns = Object.keys(shipments).slice(1);
+      const shipments_all = _.merge(shipmentsColumns, 
+                                    ubicaciones, 
+                                    { 
+                                      leftOn: 'id_ubicacion', 
+                                      rightOn: 'id' 
+                                    });
+      // const columnNames = _.keys(shipments_all);
+      const json_parsed = {
+        "model": {
+          "global_start_time": modelo.global_start[0],
+          "global_end_time": modelo.global_end[0],
+          "shipments": shipments_all.map((shipment) => ({
+            "demands": [
+              {
+                "type": "weight_kilograms",
+                "value": String((shipment as any)['demanda']),
+              },
+            ],
+            "deliveries": [
+              {
+                "arrivalLocation": {
+                  "latitude": (shipment as any)['latitude'],
+                  "longitude": (shipment as any)['longitude'],
+                },
+                "timeWindows": tw
+                  .filter((tw: any) => (tw as any).id_shipment === (shipment as any).id)
+                  .map((tw: any) => ({
+                    "start_time": (tw as any).start_time_window,
+                    "end_time": (tw as any).end_time_window,
+                  })),
+                "duration": {
+                  "seconds": (shipment as any).time_service,
+                },
+              },
+            ],
+          })),
+          "vehicles": unidades.map((unidad) => ({
+            "startLocation": {
+              "latitude": (unidad as any).latitude_salida,
+              "longitude": (unidad as any).longitude_salida,
+            },
+            "endLocation": {
+              "latitude": (unidad as any).latitude_llegada,
+              "longitude": (unidad as any).longitude_llegada,
+            },
+            "capacities": [
+              {
+                "type": "weight_kilograms",
+                "value": String((unidad as any).capacidad_peso),
+              },
+            ],
+            "costPerHour": (unidad as any).costo_hora,
+            "costPerKilometer": (unidad as any).costo_km,
+          })),
+        },
+      };
+      // const json = JSON.stringify(json_parsed)
+      let json: any = null;
+      json = JSON.parse(String(json_parsed));
     } catch (error) {
+      console.log(`\n\n=== ERROR:\n\t${error}\n`)
       this.fileInvalid = true;
-      json = null;
     }
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
 
-    if (!this.fileInvalid && json) {
-      // Set json and scenario value before fileName value for validation
-      this.json = json;
-      this.scenario = null;
-      this.fileName.setValue(file.name);
-      this.validatingUpload = false;
-      return;
-    }
-
-    this.json = false;
-    this.scenario = null;
-
-    // If file is not valid JSON, check if it's a ZIP
-    this.fileInvalid = false;
-    this.zipContentsInvalid = false;
-    let fileIsZip = false;
-
-    try {
-      await this.fileService.unzip(file);
-      fileIsZip = true;
-      const files = await this.fileService.getJSONFromZip(file);
-      this.scenarioSolutionPair = this.loadZipContents(files);
-    } catch (err) {
-      if (fileIsZip) {
-        this.zipContentsInvalid = true;
-      } else {
-        this.fileInvalid = true;
-      }
-    }
+    // // First check if the file is valid JSON
+    // let json: any = null;
+    // this.fileInvalid = false;
+    // try {
+    //   const text = await this.fileService.readAsText(file);
+    //   json = JSON.parse(text);
+    // } catch (error) {
+    //   this.fileInvalid = true;
+    //   json = null;
+    // }
+    // try {
+    //     await this.fileService.unzip(file);
+    //     fileIsZip = true;
+    //     const files = await this.fileService.getJSONFromZip(file);
+    //     this.scenarioSolutionPair = this.loadZipContents(files);
+    // } catch (err) {
+    //     if (fileIsZip) {
+    //       this.zipContentsInvalid = true;
+    //     } else {
+    //       this.fileInvalid = true;
+    //     }
+    // }
     this.validatingUpload = false;
     this.fileName.setValue(file.name);
   }

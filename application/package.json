@@ -14,5 +14,8 @@
     "postinstall": "npx lerna init",
     "prepare": "npx lerna bootstrap",
     "start": "npx --node-options=\"-r dotenv/config\" lerna run --parallel start"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }

@@ -1,18 +1,15 @@
 <form [formGroup]="form" autocomplete="off" novalidate (ngSubmit)="solve()">
-  <h1 mat-dialog-title>Upload an existing scenario or solution</h1>
+  <h1 mat-dialog-title>Carga del archivo XLSX</h1>
   <div mat-dialog-content>
     <p>
-      Have an existing vehicle routing problem you want to solve? You can upload a JSON description
-      of the problem to see the routes that Cloud Fleet Routing recommends, and then download the
-      generated routes if you wish.
+      Resumen del componente
     </p>
     <p>
-      You may also upload a zip file containing a scenario and its matching solution. In order to do
-      this, please adhere to the following requirements:
+      Instrucciones de carga
     </p>
     <ul>
-      <li>The zip file contains two files named <i>scenario.json</i> and <i>solution.json</i></li>
-      <li>The provided solution is for the provided scenario</li>
+      <li>Instruccion A</li>
+      <li>Instruccion B</li>
     </ul>
     <div class="file-input">
       <div class="file-input__form-field">
@@ -45,7 +42,7 @@
           cdkFocusInitial
           (click)="selectFile()"
           [disabled]="validatingUpload">
-          Choose a File
+          Carga archivo
         </button>
       </div>
       <p *ngIf="validatingUpload" class="mat-small">Validating upload</p>
@@ -81,7 +78,7 @@
       <input
         #fileInput
         type="file"
-        accept=".json,.zip"
+        accept=".json,.xlsx"
         (click)="fileUploadClicked($event)"
         (change)="fileSelected($event)" />
     </div>
@@ -93,14 +90,14 @@
       (click)="cancel()"
       (keydown.enter)="cancel()"
       (keydown.space)="cancel()"
-      >Cancel</a
+      >Cancelar</a
     >
     <button
       type="submit"
       mat-raised-button
       color="primary"
       [disabled]="form.invalid || validatingUpload || resolvingPlaceIds">
-      OK
+      Cargar
     </button>
   </div>
 </form>

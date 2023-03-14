@@ -15,6 +15,9 @@ import { selectHasStorageApiRoot } from 'src/app/core/selectors/config.selectors
 import { State } from 'src/app/reducers';
 import { WelcomePageActions } from '../../actions';
 import * as fromConfig from 'src/app/core/selectors/config.selectors';
+//
+import { SintecActions } from 'src/app/core/actions';
+
 
 @Component({
   selector: 'app-welcome-page',
@@ -35,23 +38,33 @@ export class WelcomePageComponent implements OnInit {
     this.allowUserStorage$ = this.store.pipe(select(fromConfig.selectAllowUserStorage));
   }
 
-  upload(): void {
-    this.store.dispatch(WelcomePageActions.openUploadDialog());
-  }
+  // upload(): void {
+  //   this.store.dispatch(WelcomePageActions.openUploadDialog());
+  // }
 
-  newScenario(): void {
-    this.store.dispatch(WelcomePageActions.newScenario());
-  }
+  // newScenario(): void {
+  //   this.store.dispatch(WelcomePageActions.newScenario());
+  // }
 
-  loadFromStorage(): void {
-    this.store.dispatch(StorageApiActions.openLoadDialog());
-  }
+  // loadFromStorage(): void {
+  //   this.store.dispatch(StorageApiActions.openLoadDialog());
+  // }
 
-  loadFromCsv(): void {
-    this.store.dispatch(UploadActions.openCsvDialog());
-  }
+  // loadFromCsv(): void {
+  //   this.store.dispatch(UploadActions.openCsvDialog());
+  // }
 
   onHelp(): void {
     this.store.dispatch(DocumentationActions.open());
   }
+
+  // PARCHE PARA PROBLEMA DEL XLSX DE ALONSO SANDOVAL
+  // loadFromXLSX(): void {
+  //   this.store.dispatch(SintecActions.test());
+  // }
+
+  loadFromXLSX(): void {
+    this.store.dispatch(WelcomePageActions.openUploadDialog());
+  }
+
 }

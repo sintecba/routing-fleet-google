@@ -19,7 +19,8 @@
       "es2018",
       "es2019.array",
       "dom"
-    ]
+    ],
+    "types": ["node"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
