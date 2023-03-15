@@ -11,6 +11,11 @@ import { Injectable, RendererFactory2 } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import * as jszip from 'jszip';
 
+// import { readFile, utils } from 'xlsx';
+// const { readFile, utils } = pkg;
+// import * as fs from 'fs';
+import * as XLSX from 'xlsx';
+
 type FileData = string | number[] | Uint8Array | ArrayBuffer | Blob;
 
 /**
@@ -98,7 +103,78 @@ export class FileService {
   ////////////////////////////////////////////////////////////////////
   // sintec
   ////////////////////////////////////////////////////////////////////
-  async getJSONFromXLSX(file: Blob): Promise<any> {
-    
+  async getModelFromXlsx(xlsx_file: File): Promise<any> {
+    const fileContents: ArrayBuffer = await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result as ArrayBuffer);
+      };
+      reader.readAsArrayBuffer(xlsx_file);
+    });
+    const file = XLSX.read(fileContents);
+    let data = {};
+    const sheets = file.SheetNames;
+    for(let i = 0; i < sheets.length; i++) {
+        const worksheetName = sheets[i];
+        data[worksheetName] = [];
+        const rows = XLSX.utils.sheet_to_json(file.Sheets[worksheetName]);
+        rows.forEach( (row) => {
+            data[worksheetName].push(row);
+        });
+    }
+    const model = {
+      "global_start_time": data['Modelo'][0]['global_start'],
+      "global_end_time": data['Modelo'][0]['global_end'],
+      "shipments": data['Shipments'].map((item_shipment) => {
+        return {
+          "demands": [
+            {
+              "type": 'weight_kilograms',
+              "value": String(item_shipment.demanda),
+            },
+          ],
+          "deliveries": [
+            {
+              "arrivalLocation": {
+                "latitude": data['Ubicaciones'][item_shipment.id]['latitude'],
+                "longitude": data['Ubicaciones'][item_shipment.id]['longitude'],
+              },
+              "timeWindows": data['TimeWindows']
+                .filter((item) => item.id_shipment === item_shipment.id)
+                .map((item) => {
+                  return {
+                    "start_time": item.start_time_window,
+                    "end_time": item.end_time_window,
+                  };
+                }),
+              "duration": {
+                "seconds": item_shipment.time_service,
+              },
+            },
+          ],
+        };
+      }),
+      "vehicles": data['Unidades'].map((item_unidades) => {
+        return {
+          "startLocation": {
+            "latitude": item_unidades.latitude_salida,
+            "longitude": item_unidades.longitude_salida,
+          },
+          "endLocation": {
+            "latitude": item_unidades.latitude_llegada,
+            "longitude": item_unidades.longitude_llegada,
+          },
+          "capacities": [
+              {
+                "type": 'weight_kilograms',
+                "value": String(item_unidades.capacidad_peso),
+              },
+          ],
+          "costPerHour": item_unidades.costo_hora,
+          "costPerKilometer": item_unidades.costo_km,
+        };
+      }),
+    }
+    return { model, };
   }
 }
