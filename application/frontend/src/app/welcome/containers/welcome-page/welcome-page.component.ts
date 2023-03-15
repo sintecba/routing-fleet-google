@@ -38,13 +38,13 @@ export class WelcomePageComponent implements OnInit {
     this.allowUserStorage$ = this.store.pipe(select(fromConfig.selectAllowUserStorage));
   }
 
-  // upload(): void {
-  //   this.store.dispatch(WelcomePageActions.openUploadDialog());
-  // }
+  upload(): void {
+    this.store.dispatch(WelcomePageActions.openUploadDialog());
+  }
 
-  // newScenario(): void {
-  //   this.store.dispatch(WelcomePageActions.newScenario());
-  // }
+  newScenario(): void {
+    this.store.dispatch(WelcomePageActions.newScenario());
+  }
 
   // loadFromStorage(): void {
   //   this.store.dispatch(StorageApiActions.openLoadDialog());
