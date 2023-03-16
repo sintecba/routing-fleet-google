@@ -40,8 +40,7 @@ import * as VehicleActions from './vehicle.actions';
 import * as VisitRequestActions from './visit-request.actions';
 import * as VisitActions from './visit.actions';
 import * as VehicleOperatorActions from './vehicle-operator.actions';
-//
-import * as SintecActions from './sintec.actions';
+//import * as SintecActions from './sintec.actions';
 
 export {
   ConfigActions,
@@ -77,5 +76,5 @@ export {
   VisitActions,
   VisitRequestActions,
   VehicleOperatorActions,
-  SintecActions
+  //SintecActions
 };
