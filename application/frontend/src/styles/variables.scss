@@ -5,9 +5,22 @@
 
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
+// $custom-typography: mat.define-typography-config(
+//   $font-family: 'Arial, sans serif',
+// );
+// , Proxima Nova Regular, Proxima Nova Light
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato-Regular.ttf');
+}
 $custom-typography: mat.define-typography-config(
-  $font-family: 'Google Sans, Roboto, "Helvetica Neue", sans-serif',
+  $font-family: 'Lato, sans-serif',
 );
+
+// body {
+//   font-family: 'Lato', sans-serif;
+// }
+
 
 // Sintec Colors
 // Primarios
