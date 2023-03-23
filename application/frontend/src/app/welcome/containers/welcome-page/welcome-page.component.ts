@@ -16,7 +16,7 @@ import { State } from 'src/app/reducers';
 import { WelcomePageActions } from '../../actions';
 import * as fromConfig from 'src/app/core/selectors/config.selectors';
 //
-import { SintecActions } from 'src/app/core/actions';
+// import { SintecActions } from 'src/app/core/actions';
 
 
 @Component({

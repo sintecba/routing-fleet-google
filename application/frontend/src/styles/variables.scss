@@ -9,13 +9,18 @@ $custom-typography: mat.define-typography-config(
   $font-family: 'Google Sans, Roboto, "Helvetica Neue", sans-serif',
 );
 
-// Colors
+// Sintec Colors
+// Primarios
 $blue: #4285f4;
+// $blue: #002C5F;
 $blue-light: #7ab4f9;
+// $blue-light: #00A1DE;
 $blue-lighter: #d7e3f1;
 $blue-lightest: #f3f8ff;
 $blue-dark: #1a73e8;
+// $blue-dark: #002C5F;
 $blue-darker: #185abc;
+// Secundarios
 $green: #0f9d58;
 $red: #d7261b;
 $red-light: #ea4335;
@@ -72,39 +77,6 @@ $blue-map: (
     A700: #000000,
   ),
 );
-
-// $blue-map: (
-//   50: #1b072d,
-//   100: #03112a,
-//   200: #041f4d,
-//   300: #474a4f,
-//   400: #264985,
-//   500: #97b3e1,
-//   600: #323539,
-//   700: #3372f1,
-//   800: #80d535,
-//   900: #58e61b,
-//   A100: #a04a22,
-//   A200: #87e363,
-//   A400: #e96f24,
-//   A700: #bf5115,
-//   contrast: (
-//     50: #000000,
-//     100: #000000,
-//     200: #000000,
-//     300: #000000,
-//     400: #000000,
-//     500: #ffffff,
-//     600: #ffffff,
-//     700: #ffffff,
-//     800: #ffffff,
-//     900: #ffffff,
-//     A100: #000000,
-//     A200: #000000,
-//     A400: #000000,
-//     A700: #000000,
-//   ),
-// );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
