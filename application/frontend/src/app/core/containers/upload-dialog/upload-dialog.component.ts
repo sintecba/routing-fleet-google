@@ -124,11 +124,13 @@ export class UploadDialogComponent {
     //   json = null;
     // }
 
+    // OBTENER FLAG DEL TIPO DE VEHICULO
+
     console.log('\n\t=== XLSX READING ===\n');
     try {
       const model = await this.fileService.getModelFromXlsx(file);
-      console.log(`\n\t ---> type: ${typeof(model)}`);
-      console.log(`\n\t ---> value: ${JSON.stringify(model)}`);
+      // console.log(`\n\t ---> type: ${typeof(model)}`);
+      // console.log(`\n\t ---> value: ${JSON.stringify(model)}`);
       json = model;
     } catch (error) {
       console.log('\n\tXXX Error catched XXX\n');
