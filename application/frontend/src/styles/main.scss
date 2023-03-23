@@ -529,7 +529,7 @@ mat-button-toggle-group.main-toggle-group {
     }
 
     &.mat-button-toggle-checked {
-      background-color: #4285f4;
+      background-color: $primary;
 
       .mat-button-toggle-label-content {
         color: white;

@@ -10,12 +10,12 @@ $custom-typography: mat.define-typography-config(
 );
 
 // Sintec Colors
-$blue: #4285f4;
-$blue-light: #7ab4f9;
+$blue: #002C5F;
+$blue-light: #00549F;
 $blue-lighter: #d7e3f1;
 $blue-lightest: #f3f8ff;
-$blue-dark: #1a73e8;
-$blue-darker: #185abc;
+$blue-dark: #002C5F;
+$blue-darker: #002C5F;
 $green: #0f9d58;
 $red: #d7261b;
 $red-light: #ea4335;
@@ -79,6 +79,7 @@ $vehicle-operator-label: #ffccc4;
 $visit-request-label: lighten($blue, 25%);
 
 $primary: $blue;
+$mat_checkbox_color: $blue-lighter;
 $mute: rgba(0, 0, 0, 0.38);
 $dark: rgba(0, 0, 0, 0.54);
 $darker: rgba(0, 0, 0, 0.87);
