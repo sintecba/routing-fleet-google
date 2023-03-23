@@ -10,17 +10,12 @@ $custom-typography: mat.define-typography-config(
 );
 
 // Sintec Colors
-// Primarios
 $blue: #4285f4;
-// $blue: #002C5F;
 $blue-light: #7ab4f9;
-// $blue-light: #00A1DE;
 $blue-lighter: #d7e3f1;
 $blue-lightest: #f3f8ff;
 $blue-dark: #1a73e8;
-// $blue-dark: #002C5F;
 $blue-darker: #185abc;
-// Secundarios
 $green: #0f9d58;
 $red: #d7261b;
 $red-light: #ea4335;
@@ -31,33 +26,31 @@ $gray-light: #a6a6a6;
 $gray-lighter: #c6c6c6;
 $gray-lightest: #e0e0e0;
 $gray-dark: rgb(95, 99, 104);
-
-$bulk-highlight: lighten($yellow, 46%);
-$bulk-unset-highlight: lighten($red-light, 46%);
-$shipment-label: lighten($yellow, 40%);
-$vehicle-label: #c0e9d4;
-$vehicle-operator-label: #ffccc4;
-$visit-request-label: lighten($blue, 25%);
-
-$primary: $blue;
-$mute: rgba(0, 0, 0, 0.38);
-$dark: rgba(0, 0, 0, 0.54);
-$darker: rgba(0, 0, 0, 0.87);
-
-// Color maps to create palettes for the theme
+// // Primarios
+// $blue: #002C5F;
+// $blue-light: #00549F;
+// $blue-dark: #002C5F;
+// //
+// $blue-lighter: #00549F;
+// $blue-lightest: #f3f8ff;
+// // Secundarios
+// $yellow: #FDBD1F;
+// $red-light: #B20020;
+// $orange: #E37222;
+// Sintec Map Colors - Angular Material from Google
 $blue-map: (
   50: #e8f0fe,
   100: #c6dafc,
   200: #a1c2fa,
-  300: #7baaf7,
-  400: #5e97f6,
-  500: #4285f4,
-  600: #3c7df3,
-  700: #3372f1,
-  800: #2b68ef,
-  900: #1d55ec,
+  300: #00A1DE, // sintec
+  400: #00549F, // sintec 
+  500: #002C5F, // color principal
+  600: #002C5F, 
+  700: #002C5F,
+  800: #002C5F,
+  900: #002C5F,
   A100: #ffffff,
-  A200: #eef2ff,
+  A200: #eef2ff, // color acentuado
   A400: #bbcbff,
   A700: #a1b8ff,
   contrast: (
@@ -77,6 +70,18 @@ $blue-map: (
     A700: #000000,
   ),
 );
+// Set Colors Params
+$bulk-highlight: lighten($yellow, 46%);
+$bulk-unset-highlight: lighten($red-light, 46%);
+$shipment-label: lighten($yellow, 40%);
+$vehicle-label: #c0e9d4;
+$vehicle-operator-label: #ffccc4;
+$visit-request-label: lighten($blue, 25%);
+
+$primary: $blue;
+$mute: rgba(0, 0, 0, 0.38);
+$dark: rgba(0, 0, 0, 0.54);
+$darker: rgba(0, 0, 0, 0.87);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -96,3 +101,68 @@ $dispatcher-app-theme: mat.define-light-theme(
 );
 
 $edit-menu-map-width: 40%;
+
+// // Default Colors
+// $blue: #4285f4;
+// $blue-light: #7ab4f9;
+// $blue-lighter: #d7e3f1;
+// $blue-lightest: #f3f8ff;
+// $blue-dark: #1a73e8;
+// $blue-darker: #185abc;
+// $green: #0f9d58;
+// $red: #d7261b;
+// $red-light: #ea4335;
+// $orange: #e98000;
+// $yellow: #fbbc05;
+// $gray: #80868b;
+// $gray-light: #a6a6a6;
+// $gray-lighter: #c6c6c6;
+// $gray-lightest: #e0e0e0;
+// $gray-dark: rgb(95, 99, 104);
+
+// $bulk-highlight: lighten($yellow, 46%);
+// $bulk-unset-highlight: lighten($red-light, 46%);
+// $shipment-label: lighten($yellow, 40%);
+// $vehicle-label: #c0e9d4;
+// $vehicle-operator-label: #ffccc4;
+// $visit-request-label: lighten($blue, 25%);
+
+// $primary: $blue;
+// $mute: rgba(0, 0, 0, 0.38);
+// $dark: rgba(0, 0, 0, 0.54);
+// $darker: rgba(0, 0, 0, 0.87);
+
+// // Color maps to create palettes for the theme
+// // Default Map Colors
+// $blue-map: (
+//   50: #e8f0fe,
+//   100: #c6dafc,
+//   200: #a1c2fa,
+//   300: #7baaf7,
+//   400: #5e97f6,
+//   500: #4285f4,
+//   600: #3c7df3,
+//   700: #3372f1,
+//   800: #2b68ef,
+//   900: #1d55ec,
+//   A100: #ffffff,
+//   A200: #eef2ff,
+//   A400: #bbcbff,
+//   A700: #a1b8ff,
+//   contrast: (
+//     50: #000000,
+//     100: #000000,
+//     200: #000000,
+//     300: #000000,
+//     400: #000000,
+//     500: #ffffff,
+//     600: #ffffff,
+//     700: #ffffff,
+//     800: #ffffff,
+//     900: #ffffff,
+//     A100: #000000,
+//     A200: #000000,
+//     A400: #000000,
+//     A700: #000000,
+//   ),
+// );
