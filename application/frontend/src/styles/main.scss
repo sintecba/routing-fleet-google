@@ -198,24 +198,24 @@ $a-tags: 'a, a:active, a:hover, a:visited';
 $link-tags: '#{$a-tags}, span';
 
 #{$a-tags} {
-  @include make-link($primary);
+  @include make-link($blue_link);
 }
 
 #{$link-tags} {
   &.link {
-    @include make-link($primary);
+    @include make-link($blue_link);
   }
 }
 
 #{$link-tags} {
   &.link--gray-dark {
-    @include make-link($gray-dark);
+    @include make-link($blue_link);
   }
 }
 
 #{$link-tags} {
   &.secondary-link {
-    @include make-link($darker);
+    @include make-link($blue_link);
 
     &:hover {
       text-decoration: underline;

@@ -10,33 +10,27 @@ $custom-typography: mat.define-typography-config(
 );
 
 // Sintec Colors
+// Primarios
 $blue: #002C5F;
 $blue-light: #00549F;
 $blue-lighter: #d7e3f1;
 $blue-lightest: #f3f8ff;
-$blue-dark: #002C5F;
-$blue-darker: #002C5F;
-$green: #0f9d58;
-$red: #d7261b;
-$red-light: #ea4335;
-$orange: #e98000;
-$yellow: #fbbc05;
-$gray: #80868b;
+$blue-dark: #1E1E1E;
+$blue-darker: #1E1E1E;
+// Secundarios
+$green: #99CC33;
+$red: #B20020;
+$red-light: #B20020;
+$orange: #E37222;
+$yellow: #FDBD1F;
+$gray: #B2B4B3;
 $gray-light: #a6a6a6;
 $gray-lighter: #c6c6c6;
 $gray-lightest: #e0e0e0;
 $gray-dark: rgb(95, 99, 104);
-// // Primarios
-// $blue: #002C5F;
-// $blue-light: #00549F;
-// $blue-dark: #002C5F;
-// //
-// $blue-lighter: #00549F;
-// $blue-lightest: #f3f8ff;
-// // Secundarios
-// $yellow: #FDBD1F;
-// $red-light: #B20020;
-// $orange: #E37222;
+// Extra
+$blue_link: #00A1DE;
+$purple: #7030A0;
 // Sintec Map Colors - Angular Material from Google
 $blue-map: (
   50: #e8f0fe,
