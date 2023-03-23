@@ -178,6 +178,37 @@ export class FileService {
     return { model, };
   }
 
+//   async getVehiclesFromXlsx(xlsx_file: File): Promise<any> {
+//     const fileContents: ArrayBuffer = await new Promise((resolve) => {
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         resolve(reader.result as ArrayBuffer);
+//       };
+//       reader.readAsArrayBuffer(xlsx_file);
+//     });
+//     const file = XLSX.read(fileContents);
+//     let data = {};
+//     const sheets = file.SheetNames;
+//     for(let i = 0; i < sheets.length; i++) {
+//         const worksheetName = sheets[i];
+//         data[worksheetName] = [];
+//         const rows = XLSX.utils.sheet_to_json(file.Sheets[worksheetName]);
+//         rows.forEach( (row) => {
+//             data[worksheetName].push(row);
+//         });
+//     }
+
+//     const data_vehicles = {
+//       "vehicles": data['Unidades'].map((item_unidades: { tipo: any; }) => {
+//         return {
+//           "vehicles_type": item_unidades.tipo,
+//           };
+//       }),
+//     }
+//     return { data_vehicles, };
+//   }
+// }
+
   async getVehiclesFromXlsx(xlsx_file: File): Promise<any> {
     const fileContents: ArrayBuffer = await new Promise((resolve) => {
       const reader = new FileReader();
@@ -189,6 +220,19 @@ export class FileService {
     const file = XLSX.read(fileContents);
     let data = {};
     const sheets = file.SheetNames;
+
+    // Comprobar si hay un vehículo pesado en la hoja "Unidades"
+    let hasHeavyVehicle = false;
+    const unidadesSheet = file.Sheets['Unidades'];
+    const rows = XLSX.utils.sheet_to_json(unidadesSheet);
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i]['tipo'] === 'pesado') {
+        hasHeavyVehicle = true;
+        break;
+      }
+    }
+
+    // Parsear el archivo XLSX
     for(let i = 0; i < sheets.length; i++) {
         const worksheetName = sheets[i];
         data[worksheetName] = [];
@@ -197,6 +241,7 @@ export class FileService {
             data[worksheetName].push(row);
         });
     }
+
     const data_vehicles = {
       "vehicles": data['Unidades'].map((item_unidades: { tipo: any; }) => {
         return {
@@ -204,6 +249,6 @@ export class FileService {
           };
       }),
     }
-    return { data_vehicles, };
+    return { data_vehicles, hasHeavyVehicle };
   }
 }

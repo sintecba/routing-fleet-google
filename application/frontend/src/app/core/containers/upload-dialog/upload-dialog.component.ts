@@ -126,29 +126,22 @@ export class UploadDialogComponent {
     // }
 
     // FLAG TIPO VEHICULO
-    let flagVehicle: boolean = false;
+    // let flagVehicle: boolean = false;
     try {
-      const vehicles = await this.fileService.getVehiclesFromXlsx(file);
-      console.log(vehicles);
-      flagVehicle = true;
+      const { data_vehicles, hasHeavyVehicle } = await this.fileService.getVehiclesFromXlsx(file);
+      console.log(JSON.stringify(data_vehicles));
+      console.log(hasHeavyVehicle)
+      if (hasHeavyVehicle) {
+        console.log('\n=== Vehiculo pesado detectado ===\n')
+        json = null;
+      } else {
+        console.log('\n\t=== XLSX READING ===\n');
+        const model = await this.fileService.getModelFromXlsx(file);
+        json = model;
+      }
     } catch (error) {
       console.log('\n\t---XXX Error catched XXX---\n');
       console.log(`\n\t ---> error: ${error}`);
-    }
-
-    if (flagVehicle) {
-      console.log('\n\t=== XLSX READING ===\n');
-      try {
-        const model = await this.fileService.getModelFromXlsx(file);
-        // console.log(`\n\t ---> type: ${typeof(model)}`);
-        // console.log(`\n\t ---> value: ${JSON.stringify(model)}`);
-        json = model;
-      } catch (error) {
-        console.log('\n\tXXX Error catched XXX\n');
-        console.log(`\n\t ---> error: ${error}`);
-        this.fileInvalid = true;
-        json = null;
-      }
     }
     // XLSX COMPONENTE LECTURA
     // console.log('\n\t=== XLSX READING ===\n');
