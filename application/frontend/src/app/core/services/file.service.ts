@@ -177,4 +177,33 @@ export class FileService {
     }
     return { model, };
   }
+
+  async getVehiclesFromXlsx(xlsx_file: File): Promise<any> {
+    const fileContents: ArrayBuffer = await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result as ArrayBuffer);
+      };
+      reader.readAsArrayBuffer(xlsx_file);
+    });
+    const file = XLSX.read(fileContents);
+    let data = {};
+    const sheets = file.SheetNames;
+    for(let i = 0; i < sheets.length; i++) {
+        const worksheetName = sheets[i];
+        data[worksheetName] = [];
+        const rows = XLSX.utils.sheet_to_json(file.Sheets[worksheetName]);
+        rows.forEach( (row) => {
+            data[worksheetName].push(row);
+        });
+    }
+    const data_vehicles = {
+      "vehicles": data['Unidades'].map((item_unidades: { tipo: any; }) => {
+        return {
+          "vehicles_type": item_unidades.tipo,
+          };
+      }),
+    }
+    return { data_vehicles, };
+  }
 }

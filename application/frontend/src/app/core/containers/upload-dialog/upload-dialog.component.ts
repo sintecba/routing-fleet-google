@@ -109,6 +109,7 @@ export class UploadDialogComponent {
     let json: any = null;
     this.fileInvalid = false;
 
+    // // JSON COMPONENTE LECTURA
     // console.log('\n\t=== TRY JSON DEFAULT COMPONENT ===\n')
     // try {
     //   const text = await this.fileService.readAsText(file);
@@ -124,20 +125,44 @@ export class UploadDialogComponent {
     //   json = null;
     // }
 
-    // OBTENER FLAG DEL TIPO DE VEHICULO
-
-    console.log('\n\t=== XLSX READING ===\n');
+    // FLAG TIPO VEHICULO
+    let flagVehicle: boolean = false;
     try {
-      const model = await this.fileService.getModelFromXlsx(file);
-      // console.log(`\n\t ---> type: ${typeof(model)}`);
-      // console.log(`\n\t ---> value: ${JSON.stringify(model)}`);
-      json = model;
+      const vehicles = await this.fileService.getVehiclesFromXlsx(file);
+      console.log(vehicles);
+      flagVehicle = true;
     } catch (error) {
-      console.log('\n\tXXX Error catched XXX\n');
+      console.log('\n\t---XXX Error catched XXX---\n');
       console.log(`\n\t ---> error: ${error}`);
-      this.fileInvalid = true;
-      json = null;
     }
+
+    if (flagVehicle) {
+      console.log('\n\t=== XLSX READING ===\n');
+      try {
+        const model = await this.fileService.getModelFromXlsx(file);
+        // console.log(`\n\t ---> type: ${typeof(model)}`);
+        // console.log(`\n\t ---> value: ${JSON.stringify(model)}`);
+        json = model;
+      } catch (error) {
+        console.log('\n\tXXX Error catched XXX\n');
+        console.log(`\n\t ---> error: ${error}`);
+        this.fileInvalid = true;
+        json = null;
+      }
+    }
+    // XLSX COMPONENTE LECTURA
+    // console.log('\n\t=== XLSX READING ===\n');
+    // try {
+    //   const model = await this.fileService.getModelFromXlsx(file);
+    //   // console.log(`\n\t ---> type: ${typeof(model)}`);
+    //   // console.log(`\n\t ---> value: ${JSON.stringify(model)}`);
+    //   json = model;
+    // } catch (error) {
+    //   console.log('\n\tXXX Error catched XXX\n');
+    //   console.log(`\n\t ---> error: ${error}`);
+    //   this.fileInvalid = true;
+    //   json = null;
+    // }
 
     if (!this.fileInvalid && json) {
       console.log('\n\t=== IF JSON COMPONENT ===\n');
