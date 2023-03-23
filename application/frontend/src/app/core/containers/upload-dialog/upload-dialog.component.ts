@@ -125,11 +125,9 @@ export class UploadDialogComponent {
     //   json = null;
     // }
 
-    // FLAG TIPO VEHICULO
-    // let flagVehicle: boolean = false;
+    // FLAG VEHICULO PESADO
     try {
-      const { data_vehicles, hasHeavyVehicle } = await this.fileService.getVehiclesFromXlsx(file);
-      console.log(JSON.stringify(data_vehicles));
+      const { hasHeavyVehicle } = await this.fileService.getHeavyVehicleFlag(file);
       console.log(hasHeavyVehicle)
       if (hasHeavyVehicle) {
         console.log('\n=== Vehiculo pesado detectado ===\n')
