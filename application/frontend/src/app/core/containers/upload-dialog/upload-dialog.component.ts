@@ -25,6 +25,7 @@ import { toDispatcherLatLng } from 'src/app/util';
 ///////////////////////////////////////////////////////////////////////////////
 import * as xlsx from 'xlsx';
 import * as _ from 'lodash';
+import { ConstantPool } from '@angular/compiler';
 ///////////////////////////////////////////////////////////////////////////////
 
 @Component({
@@ -131,7 +132,9 @@ export class UploadDialogComponent {
       console.log(hasHeavyVehicle)
       if (hasHeavyVehicle) {
         console.log('\n=== Vehiculo pesado detectado ===\n')
-        json = null;
+        const model = await this.fileService.getHeavyModel(file)
+        console.log(Object.keys(model));
+        json = model;
       } else {
         console.log('\n\t=== XLSX READING ===\n');
         const model = await this.fileService.getModelFromXlsx(file);
