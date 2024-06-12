@@ -9,5 +9,5 @@ async function getJSONFromXlsx(path_xlsx) {
     }
 }
 
-const PATH = 'C:\Users\julio.quinones\Documents\projects\repos\routing-fleet-google\application\frontend\test_sintec\Plantilla.xlsx';
+const PATH = 'C:\Users\alonso.sandoval\Documents\repos2t\routing-fleet-google\application\frontend\test_sintec\Plantilla.xlsx';
 getJSONFromXlsx(PATH);

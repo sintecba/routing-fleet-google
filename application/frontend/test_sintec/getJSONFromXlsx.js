@@ -4,7 +4,7 @@ import pkg from 'xlsx';
 const { readFile, utils } = pkg;
   
 // Reading our test file
-const path_xlsx = './escenario3.xlsx';
+//const path_xlsx = './escenario3.xlsx';
 
 function getJSONFromXlsx(xlsx_file) {
     const file = readFile(xlsx_file);
@@ -23,12 +23,12 @@ function getJSONFromXlsx(xlsx_file) {
         global_end_time: data['Modelo'][0]['global_end'],
         shipments: data['Shipments'].map((item_shipment) => {
             return {
-                demands: [
-                    {
-                        type: 'weight_kilograms',
-                        value: String(item_shipment.demanda),
-                    },
-                ],
+                // demands: [
+                //     {
+                //         type: 'weight_kilograms',
+                //         value: String(item_shipment.demanda),
+                //     },
+                // ],
                 deliveries: [
                     {
                         arrivalLocation: {
@@ -48,6 +48,7 @@ function getJSONFromXlsx(xlsx_file) {
                         },
                     },
                 ],
+                shipmentType: item_shipment.Type,
             };
         }),
         vehicles: data['Unidades'].map((item_unidades) => {
@@ -60,12 +61,12 @@ function getJSONFromXlsx(xlsx_file) {
                     latitude: item_unidades.latitude_llegada,
                     longitude: item_unidades.longitude_llegada,
                 },
-                capacities: [
-                    {
-                        type: 'weight_kilograms',
-                        value: String(item_unidades.capacidad_peso),
-                    },
-                ],
+                // capacities: [
+                //     {
+                //         type: 'weight_kilograms',
+                //         value: String(item_unidades.capacidad_peso),
+                //     },
+                // ],
                 costPerHour: item_unidades.costo_hora,
                 costPerKilometer: item_unidades.costo_km,
             };

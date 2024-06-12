@@ -127,12 +127,12 @@ export class FileService {
       "global_end_time": data['Modelo'][0]['global_end'],
       "shipments": data['Shipments'].map((item_shipment) => {
         return {
-          "demands": [
-            {
-              "type": 'weight_kilograms',
-              "value": String(item_shipment.demanda),
-            },
-          ],
+          // "demands": [
+          //   {
+          //     "type": 'weight_kilograms',
+          //     "value": String(item_shipment.demanda),
+          //   },
+          // ],
           "deliveries": [
             {
               "arrivalLocation": {
@@ -152,6 +152,7 @@ export class FileService {
               },
             },
           ],
+          "shipmentType": item_shipment.type
         };
       }),
       "vehicles": data['Unidades'].map((item_unidades) => {
@@ -164,12 +165,12 @@ export class FileService {
             "latitude": item_unidades.latitude_llegada,
             "longitude": item_unidades.longitude_llegada,
           },
-          "capacities": [
-              {
-                "type": 'weight_kilograms',
-                "value": String(item_unidades.capacidad_peso),
-              },
-          ],
+          // "capacities": [
+          //     {
+          //       "type": 'weight_kilograms',
+          //       "value": String(item_unidades.capacidad_peso),
+          //     },
+          // ],
           "costPerHour": item_unidades.costo_hora,
           "costPerKilometer": item_unidades.costo_km,
         };
