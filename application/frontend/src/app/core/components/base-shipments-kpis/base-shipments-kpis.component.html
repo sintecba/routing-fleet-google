@@ -2,11 +2,11 @@
   <div class="planning-totals">
     <ng-container *ngIf="shipmentsKpis.selected; else noShipmentsSelected">
       <span class="planning-total">{{ shipmentsKpis.selected | number }}</span>
-      Shipment{{ shipmentsKpis.selected > 1 ? 's' : '' }} selected out of
+      Visit{{ shipmentsKpis.selected > 1 ? 's' : '' }} selected out of
       <span class="planning-total">{{ shipmentsKpis.total | number }}</span>
     </ng-container>
     <ng-template #noShipmentsSelected>
-      Shipments in total <span class="planning-total">{{ shipmentsKpis.total | number }}</span>
+      Visits in total <span class="planning-total">{{ shipmentsKpis.total | number }}</span>
     </ng-template>
   </div>
   <div class="demands" [ngClass]="maxColumnsClass">

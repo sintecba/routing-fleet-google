@@ -152,7 +152,6 @@ export class FileService {
               },
             },
           ],
-          "shipmentType": item_shipment.type
         };
       }),
       "vehicles": data['Unidades'].map((item_unidades) => {
@@ -173,6 +172,7 @@ export class FileService {
           // ],
           "costPerHour": item_unidades.costo_hora,
           "costPerKilometer": item_unidades.costo_km,
+          "label": item_unidades.label,
         };
       }),
     }
