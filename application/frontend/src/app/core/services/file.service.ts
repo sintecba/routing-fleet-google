@@ -152,6 +152,10 @@ export class FileService {
               },
             },
           ],
+          "penaltyCost": item_shipment.penaltyCost,
+          "allowedVehicleIndices": [item_shipment.allowed],
+          "label": item_shipment.label,
+          "shipmentType": item_shipment.type
         };
       }),
       "vehicles": data['Unidades'].map((item_unidades) => {

@@ -51,9 +51,10 @@ export class BaseShipmentsTableComponent {
   @Output() mouseEnterVisitRequest = new EventEmitter<number>();
   @Output() mouseExitVisitRequest = new EventEmitter<number>();
 
+  
   constructor(private zone: NgZone) {}
-
-  idSelector(item: ShipmentItem): number {
+  
+  idSelector(item: ShipmentItem): number {    
     return item.visitRequest.id;
   }
 
